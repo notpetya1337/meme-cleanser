@@ -6,6 +6,7 @@ from pathlib import Path
 import pyperclip
 import requests
 
+from PIL import ImageGrab
 import win32clipboard as winclip
 import win32con
 from io import BytesIO
@@ -80,7 +81,9 @@ def main():
     tempfilepath = Path("./tmp/clip.png")
     if not img:
         # load image directly from clipboard
-        os.system(f"xclip -selection clipboard -t image/png -o > {tempfilepath}")
+        #os.system(f"xclip -selection clipboard -t image/png -o > {tempfilepath}") # this needs to be replaced
+        grabimg = ImageGrab.grabclipboard()
+        grabimg.save(tempfilepath, 'png')
         print(tempfilepath.stat().st_size)
         if tempfilepath.stat().st_size > 0:
             img = Image.open("./tmp/clip.png")
@@ -93,9 +96,7 @@ def main():
     img = removeWatermarks(img)
 
     # put image back into clipboard
-#    img.show() # opens file with OS
     img.save("./tmp/clip.png")
-#    os.system(f"xclip -selection clipboard -t image/png -i < {tempfilepath}")
     output = BytesIO()
     img.convert('RGB').save(output, 'BMP')
     clipdata = output.getvalue()[14:]
