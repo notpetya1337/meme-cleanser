@@ -73,13 +73,13 @@ def main():
 
     img = getImageFromText()
 
-    tempfilepath = Path("/tmp/clip.png")
+    tempfilepath = Path("./tmp/clip.png")
     if not img:
         # load image directly from clipboard
         os.system(f"xclip -selection clipboard -t image/png -o > {tempfilepath}")
         print(tempfilepath.stat().st_size)
         if tempfilepath.stat().st_size > 0:
-            img = Image.open("/tmp/clip.png")
+            img = Image.open("./tmp/clip.png")
 
     if not img:
         print("No image found, aborting :(")
@@ -90,7 +90,7 @@ def main():
 
     # put image back into clipboard
     img.show()
-    img.save("/tmp/clip.png")
+    img.save("./tmp/clip.png")
     os.system(f"xclip -selection clipboard -t image/png -i < {tempfilepath}")
 
 if __name__ == "__main__":

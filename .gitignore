@@ -1,0 +1,6 @@
+tmp/
+# Default ignored files
+shelf/
+/workspace.xml
+venv/
+.idea/
