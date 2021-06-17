@@ -11,6 +11,5 @@ The image is then cleansed of heresy and returned to the clipboard.
 
 # Notes:
 
-- Relies on xclip to get the image into/out-ouf the clipboard, so only Linux is supported atm
 - It is assumed that a watermark with a dark background exists.
   If it doesn't or if there is no clear seperation between the watermark and the image, parts of the image proper may be cut off.

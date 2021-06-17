@@ -81,7 +81,6 @@ def main():
     tempfilepath = Path("./tmp/clip.png")
     if not img:
         # load image directly from clipboard
-        #os.system(f"xclip -selection clipboard -t image/png -o > {tempfilepath}") # this needs to be replaced
         grabimg = ImageGrab.grabclipboard()
         grabimg.save(tempfilepath, 'png')
         print(tempfilepath.stat().st_size)
